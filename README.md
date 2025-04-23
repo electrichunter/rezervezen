@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 🚀 Rezervasyon Sistemi MVP - Geliştirme Yol Haritası (Next.js + Supabase)
 
-## Getting Started
+| 📌 Görev Başlığı | 🔧 Açıklama / Alt Görevler | 🎯 Öncelik Puanı | ✅ Durum |
+| --- | --- | --- | --- |
+| 🔐 Supabase Auth Kurulumu | - Supabase projesi oluştur <br> - Auth (e-posta + şifre) ile kayıt/giriş | 200 | Tamamlandı(api) |
+| 🧾 İşletme Kayıt Sistemi | - Kullanıcı kayıt olduktan sonra işletme profilini oluştur <br> - Ad, adres, telefon vs. | 190 | tamamapi |
+|   |    |   |   |
+| 📅 Randevu Takvimi Altyapısı | - Randevu tablosu oluştur (Supabase) <br> - Boş saat hesaplama fonksiyonu | 170 | sql tm |
+| 🙋‍♂️ Müşteri Randevu Alma | - Takvimden boş saat seçip randevu alma <br> - Ad, telefon girişi | 165 | Yapılacak |
+| 📋 Randevu Yönetimi (İşletme Paneli) | - İşletme kendi randevularını görebilsin <br> - İptal edebilsin | 160 | Yapılacak |
+| 💰 Hizmet Talebi Oluşturma (Müşteri) | - Müşteri konum, tarih, hizmet tipi girerek “teklif isteği” açar | 155 | Yapılacak |
+| 📤 Teklif Verme Sistemi (İşletme) | - İşletmeler açık hizmet taleplerine teklif verir <br> - Fiyat ve not girer | 150 | Yapılacak |
+| 🌍 Konum Bazlı Filtreleme | - Lokasyon bilgisine göre teklif eşleştirme (örn: aynı şehir/ilçe içinde) | 145 | Yapılacak |
+| 👤 Müşteri Bilgilerini Saklama | - Alınan randevulara müşteri bilgisi iliştir (ad, telefon) | 140 | Yapılacak |
+| 📆 react-big-calendar Kurulumu | - react-big-calendar veya benzeri UI takvimi entegre et | 130 | Yapılacak |
+| 📬 E-posta Onayı (SendGrid) | - Randevu sonrası müşteriye otomatik e-posta gönder (SendGrid/Mailjet ile) | 120 | Yapılacak |
+| 🚫 Ücretsiz Paket Kısıtlamaları | - Tek personel <br> - Tek hizmet <br> - 3 aylık geçmiş <br> - Sadece e-posta bildirimi | 100 | Yapılacak |
+| 🎨 UI Kurulumu | - Shadcn/ui veya Mantine setup <br> - Basit arayüz: Giriş/Kayıt, Takvim, Panel | 90 | Yapılacak |
+| 🔄 Cron Job ile Hatırlatma Maili | - Vercel cron ile günlük çalışan bir API route yaz <br> - Yaklaşan randevulara e-posta | 60 | Yapılacak |
 
-First, run the development server:
+## 🧪 Test ve Doğrulama
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+| 📌 Test Aşaması | 🔧 Açıklama | 🎯 Öncelik Puanı | ✅ Durum |
+| --- | --- | --- | --- |
+| Postman ile API Testleri | - Auth, profil, randevu alma, teklif verme, eşleştirme testleri | 140 | Yapılacak |
+| UI Üzerinden Manuel Test | - Müşteri talep oluşturur, işletme teklif verir, müşteri onaylar | 110 | Yapılacak |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💡 Notlar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Teklif sistemi opsiyonel yapılabilir, randevulu sistem ile paralel yürüyebilir.
+- Konum verisi için PostGIS veya Supabase’in `geopoint` alanları kullanılabilir.
+- Teklif süresine zaman sınırı getirebilirsin (örn: 24 saat içinde cevap).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+[rezervezen.png](attachment:98b51c17-4639-4a55-8700-cfaa9b49aeeb:rezervezen.png)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![rezervezen-arkapilansız.png](attachment:1de49d52-ad2a-461c-8285-8278dfd2f96d:rezervezen-arkapilansz.png)
