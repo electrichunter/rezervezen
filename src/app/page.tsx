@@ -1,16 +1,12 @@
-import HeroGeometric from "../app/component/ul/shape-landing-hero"; // component yazılmalı
-import Menu from "./component/ul/nav-header"; // component yazılmalı
+import { Hero } from "./component/ul/home/shape-landing-hero";
+import Menu from "./component/ul/nav-header";
 
 export default function Page() {
   return (
     <>
-      <div className=" ">
-    {/*     <Menu /> */}
-        <HeroGeometric
-          badge="Yeni Nesil Randevu Sistemi"
-          title1="Güvenli ve Hızlı"
-          title2="Randevu Sistemi"
-        />
+      <div>
+      <Menu />
+        <Hero />
       </div>
     </>
   );
