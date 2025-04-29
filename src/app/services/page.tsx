@@ -1,55 +1,142 @@
 "use client";
 
-import React from "react";
-import NavHeader from "../component/ul/nav-header";
-import { Wrench, Cpu, Smartphone } from "lucide-react";
+import Link from "next/link";
+import { motion, Variants } from "framer-motion";
+import Menu from "../component/ul/nav-header";
 
-function ServiceCard({
-  icon: Icon,
-  title,
-  description,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../component/ul/card/services_card";
+
+type Service = {
   title: string;
   description: string;
-}) {
-  return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 flex flex-col items-center text-center shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
-      <Icon className="w-12 h-12 text-rose-300 mb-4" />
-      <h3 className="text-2xl font-semibold text-white mb-2">{title}</h3>
-      <p className="text-white/80">{description}</p>
-    </div>
-  );
-}
+  icon: string;
+  href: string;
+};
+
+const services: Service[] = [
+  {
+    title: "Randevu Yönetimi",
+    description:
+      "Kolayca randevu oluşturun, iptal edin veya güncelleyin. Zamanınızı daha verimli yönetin.",
+    icon: "📅",
+    href: "/services/appointment",
+  },
+  {
+    title: "İşletme Profili Oluşturma",
+    description:
+      "Detaylı işletme profili ile müşterilerinize en iyi ilk izlenimi sunun.",
+    icon: "🏢",
+    href: "/services/busines_register",
+  },
+  {
+    title: "Analitik ve Raporlama",
+    description:
+      "Gerçek zamanlı verilerle randevu performansınızı takip edip iyileştirin.",
+    icon: "📊",
+    href: "/services/analytics",
+  },
+  {
+    title: "Hatırlatma Bildirimleri",
+    description:
+      "E-posta ve SMS ile otomatik hatırlatma göndererek katılım oranını artırın.",
+    icon: "🔔",
+    href: "/services/notifications",
+  },
+  {
+    title: "Ödeme Entegrasyonu",
+    description:
+      "Güvenli ödeme seçenekleriyle müşterilerinizin işlemlerini zahmetsizce yönetin.",
+    icon: "💳",
+    href: "/services/payments",
+  },
+  {
+    title: "Çoklu Konum Desteği",
+    description:
+      "Birden fazla şubeyi tek platformdan kolayca yönetin.",
+    icon: "📍",
+    href: "/services/locations",
+  },
+];
+
+const containerVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-[#111111] text-white">
-      <NavHeader />
+   <>
+    <Menu />
+    <section
+      role="region"
+      aria-labelledby="services-heading"
+      className="bg-amber-50 dark:bg-gray-900 min-h-screen py-16"
+    >
+      <div className="container mx-auto px-4">
+        <motion.h1
+          id="services-heading"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl sm:text-5xl font-extrabold mb-12 text-center text-black dark:text-white"
+        >
+          Hizmetlerimiz
+        </motion.h1>
 
-      <main className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold text-center mb-12">
-          Rezervasyon Sistemimiz
-        </h1>
-<br />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ServiceCard
-            icon={Wrench}
-            title="Özel Çözümler"
-            description="İşletmenizin ihtiyaçlarına göre özelleştirilmiş rezervasyon çözümleri sunuyoruz. Sizin için en uygun sistemle zaman kaybetmeden rezervasyon alabilirsiniz."
-          />
-          <ServiceCard
-            icon={Cpu}
-            title="Yüksek Performans"
-            description="Güvenli, hızlı ve sorunsuz çalışan altyapımızla, müşteri taleplerinizi en hızlı şekilde karşılayın."
-          />
-          <ServiceCard
-            icon={Smartphone}
-            title="Mobil Uyumlu"
-            description="Her cihazda mükemmel çalışan arayüzümüzle, müşterilerinizin her zaman erişebileceği bir rezervasyon sistemi."
-          />
-        </div>
-      </main>
-    </div>
+        <motion.ul
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          role="list"
+        >
+          {services.map((service) => (
+            <motion.li
+              key={service.title}
+              variants={itemVariants}
+              role="listitem"
+            >
+              <Link href={service.href} passHref>
+                <Card className="cursor-pointer transition-shadow hover:shadow-xl">
+                  <motion.div
+                    whileHover={{ scale: 1.03, y: -5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+                    aria-labelledby={`${service.title}-title`}
+                  >
+                    <CardHeader>
+                      <CardTitle
+                        id={`${service.title}-title`}
+                        className="flex items-center gap-3 text-2xl text-black dark:text-white"
+                      >
+                        <span className="text-3xl">{service.icon}</span>
+                        {service.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-gray-700 dark:text-gray-300">
+                        {service.description}
+                      </CardDescription>
+                    </CardContent>
+                  </motion.div>
+                </Card>
+              </Link>
+            </motion.li>
+          ))}
+        </motion.ul>
+      </div>
+    </section>
+    </>
   );
 }

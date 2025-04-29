@@ -1,16 +1,17 @@
+"use client";
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'; // Correct import for App Router
 
 const VerifyEmailPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Sayfa yüklendikten sonra, kullanıcıyı otomatik olarak yönlendirebilirsiniz
+    // Redirect the user after 5 seconds
     const timer = setTimeout(() => {
-      router.push('/'); // 5 saniye sonra ana sayfaya yönlendirilir
+      router.push('/'); // Redirect to the homepage
     }, 5000);
 
-    return () => clearTimeout(timer); // Component unmount olduğunda temizleme
+    return () => clearTimeout(timer); // Cleanup on component unmount
   }, [router]);
 
   return (
