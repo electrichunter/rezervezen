@@ -25,7 +25,7 @@ const services: Service[] = [
     description:
       "Kolayca randevu oluşturun, iptal edin veya güncelleyin. Zamanınızı daha verimli yönetin.",
     icon: "📅",
-    href: "/services/appointment",
+    href: "/services/appointments",
   },
   {
     title: "İşletme Profili Oluşturma",

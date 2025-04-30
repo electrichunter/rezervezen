@@ -88,7 +88,7 @@ const Cursor = ({ position }: { position: any }) => {
     <motion.li
       animate={position}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="absolute z-0 h-1.5 rounded-full bg-indigo-600 "
+      className="absolute z-0 h-1.5 rounded-full bg-indigo-600 " 
     />
   );
 };

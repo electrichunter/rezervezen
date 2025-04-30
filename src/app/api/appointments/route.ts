@@ -11,15 +11,13 @@ const supabase = createClient(
 
 
 
-
-// Randevu oluşturma
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
-  const { business_id, appointment_time, notes } = body;
+  const { business_name, appointment_time, notes } = body;
 
-  if (!business_id || !appointment_time) {
+  if (!business_name || !appointment_time) {
     return NextResponse.json(
-      { error: 'business_id ve appointment_time gereklidir.' },
+      { error: 'business_name ve appointment_time gereklidir.' },
       { status: 400 }
     );
   }
@@ -43,6 +41,22 @@ export const POST = async (req: NextRequest) => {
   }
 
   const { id: user_id } = user.user;
+
+  // İşletme adı ile ID’yi bul
+  const { data: business, error: businessError } = await supabase
+    .from('businesses')
+    .select('id')
+    .eq('name', business_name)
+    .single();
+
+  if (businessError || !business) {
+    return NextResponse.json(
+      { error: 'İşletme bulunamadı.' },
+      { status: 404 }
+    );
+  }
+
+  const { id: business_id } = business;
 
   const { data, error } = await supabase
     .from('appointments')
