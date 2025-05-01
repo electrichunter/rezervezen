@@ -77,7 +77,7 @@ const itemVariants: Variants = {
 export default function ServicesPage() {
   return (
    <>
-    <Menu />
+   
     <section
       role="region"
       aria-labelledby="services-heading"

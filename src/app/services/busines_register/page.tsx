@@ -60,7 +60,7 @@ export default function BusinessSignupForm() {
 
   return (
     <>
-      <Menu />
+ 
       <div className="mt-16"></div>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto">
